@@ -69,7 +69,9 @@ jobs:
       # Update ECS Task Definition with image tag
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+        uses: aws-actions/amazon-ecr-login@v2
+        with:
+          mask-password: 'true'
 
       - name: Download task definition
         run: |
@@ -110,6 +112,14 @@ jobs:
           LOAD_BALANCER_ARN=$(aws elbv2 describe-target-groups  --target-group-arns $TARGET_GROUP_ARN --query 'TargetGroups[0].LoadBalancerArns[0]' --output text)
           APP_URL=$(aws elbv2 describe-load-balancers --load-balancer-arns $LOAD_BALANCER_ARN --query 'LoadBalancers[0].DNSName' --output text)
           echo "app_url=$APP_URL" >> $GITHUB_OUTPUT
+
+      - name: Summary
+        id: summary
+        run: |
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "## ECS Task" >> $GITHUB_STEP_SUMMARY
+          echo "* App URL: $APP_URL" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
 
       # TODO
       # Configure AWS credentials
