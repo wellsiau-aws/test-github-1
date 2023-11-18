@@ -1,5 +1,9 @@
 on:
   workflow_dispatch:
+    inputs:
+      image-tag:
+        default: "latest"
+        description: "Name to image tag to deploy"
   workflow_call:
     inputs:
       working-directory:
@@ -17,7 +21,7 @@ on:
         description: "The ECS application public ip"
         value: ${{ jobs.deploy.outputs.app_ip }}
 
-name: cd-workflow
+name: cd
 jobs:
   deploy:
     runs-on: ubuntu-latest
