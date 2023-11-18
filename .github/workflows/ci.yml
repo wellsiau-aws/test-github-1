@@ -106,7 +106,8 @@ jobs:
         with:
           repository: ${{ vars.ECR_REPO_NAME }}
           tag: latest
-
+          fail_threshold: critical
+          
       - name: Summary
         id: summary
         run: |
