@@ -61,6 +61,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           git clone https://github.com/aws-samples/ecs-demo-php-simple-app app
+          ls -l
           ls -l $GITHUB_WORKSPACE/app
 
       - name: Login to Amazon ECR
@@ -73,7 +74,7 @@ jobs:
         id: detect-dockerfile-changes
         uses: tj-actions/changed-files@v35
         with:
-          files: $GITHUB_WORKSPACE/app/**
+          files: app/**
 
       - name: Build, tag, and push image to AWS ECR
         id: build-image
