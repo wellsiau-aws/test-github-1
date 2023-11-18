@@ -1,10 +1,6 @@
 name: cd
 on:
   workflow_dispatch:
-    # inputs:
-    #   image-tag:
-    #     default: "latest"
-    #     description: "ECS image tag"
   workflow_call:
     inputs:
       working-directory:
