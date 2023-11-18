@@ -17,7 +17,7 @@ on:
         description: "The ECS application public ip"
         value: ${{ jobs.deploy.outputs.app_ip }}
 
-name: cd
+name: cd-workflow
 jobs:
   deploy:
     runs-on: ubuntu-latest
