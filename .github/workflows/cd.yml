@@ -1,5 +1,9 @@
 on:
   workflow_dispatch:
+    inputs:
+      image-tag:
+        default: "latest"
+        description: "ECS image tag"
   workflow_call:
     inputs:
       working-directory:
@@ -33,7 +37,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Echo
-        run: echo "CD... image-tag ${{ inputs.image-tag }}"
+        run: echo "image-tag: ${{ inputs.image-tag }}"
 
       # Configure AWS credentials
       - name: Configure AWS credentials
