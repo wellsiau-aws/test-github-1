@@ -1,3 +1,4 @@
+name: cd
 on:
   workflow_dispatch:
     inputs:
@@ -20,8 +21,6 @@ on:
       app_ip:
         description: "The ECS application public ip"
         value: ${{ jobs.deploy.outputs.app_ip }}
-
-name: cd
 jobs:
   deploy:
     runs-on: ubuntu-latest
