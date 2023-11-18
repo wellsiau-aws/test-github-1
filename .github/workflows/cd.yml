@@ -25,6 +25,7 @@ name: cd
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: main
     permissions:
       id-token: write # need this for OIDC
       contents: read
